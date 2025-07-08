@@ -9,7 +9,7 @@ cat test_from_checne.txt
 ```
 ## 然后每个实验尽量用单独的文件夹保存，不要把文件都放在这个下面，后面不好管理
 ## debug使用launch.json
-## run code with these command
+## 使用这个命令运行代码，把里面关于名称的变量可以换一换
 ```
 python main.py --model deit_tiny_patch16_224 --batch-size 64 --data-set Smh_custom --data-path /home/shared_data/salmonella_detection/OriginalData/AmericanData --output_dir /home/shared_data/salmonella_detection/smh_shared_output/exp_name -logger -exp_name first_try
 ```
