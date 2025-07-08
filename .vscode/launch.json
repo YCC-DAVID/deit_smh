@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+        "name": "debug_deit_for_smh",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/main.py",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}",          // 当前工作目录，可按需调整
+        "justMyCode": false,                  // 调试时可进入依赖库代码
+        "args": [
+            "--model", "deit_tiny_patch16_224",
+            "--batch-size", "64",
+            "--data-set", "Smh_custom",
+            "--data-path", "/home/shared_data/salmonella_detection/OriginalData/AmericanData",
+            "--output_dir", "/home/shared_data/salmonella_detection/smh_shared_output/exp_name",
+            "-logger",
+            "-exp_name", "first_try"
+        ],
+        }
+    ]
+
+}

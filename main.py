@@ -157,7 +157,7 @@ def get_args_parser():
     # Dataset parameters
     parser.add_argument('--data-path', default='/datasets01/imagenet_full_size/061417/', type=str,
                         help='dataset path')
-    parser.add_argument('--data-set', default='IMNET', choices=['CIFAR', 'IMNET', 'INAT', 'INAT19'],
+    parser.add_argument('--data-set', default='IMNET', choices=['CIFAR', 'IMNET', 'INAT', 'INAT19','Smh_custom'],
                         type=str, help='Image Net dataset path')
     parser.add_argument('--inat-category', default='name',
                         choices=['kingdom', 'phylum', 'class', 'order', 'supercategory', 'family', 'genus', 'name'],
@@ -190,6 +190,7 @@ def get_args_parser():
 
     parser.add_argument("-logger", action='store_true')
     parser.add_argument('--exp_name', type=str, default='default_exp', help='Name of the experiment')
+    parser.add_argument('--val_ratio', type=float, default=0.3)
     return parser
 
 

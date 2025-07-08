@@ -8,6 +8,8 @@ from torchvision.datasets.folder import ImageFolder, default_loader
 
 from timm.data.constants import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from timm.data import create_transform
+import numpy as np
+from torch.utils.data import Dataset, Subset, random_split
 
 
 class INatDataset(ImageFolder):
@@ -52,6 +54,18 @@ class INatDataset(ImageFolder):
 
     # __getitem__ and __len__ inherited from ImageFolder
 
+class Smh_Dataset(Dataset):
+    def __init__(self, base_dataset: datasets.ImageFolder, indices):
+        self.base_dataset = base_dataset
+        self.indices = np.asarray(indices)
+        self.targets = np.asarray(base_dataset.targets)[self.indices]
+
+    def __getitem__(self, idx):
+        return self.base_dataset[self.indices[idx]]
+
+    def __len__(self):
+        return len(self.indices)
+
 
 def build_dataset(is_train, args):
     transform = build_transform(is_train, args)
@@ -71,6 +85,31 @@ def build_dataset(is_train, args):
         dataset = INatDataset(args.data_path, train=is_train, year=2019,
                               category=args.inat_category, transform=transform)
         nb_classes = dataset.nb_classes
+    elif args.dataset == 'Smh_custom':
+        full_dataset = ImageFolder(args.data_path, transform=transform)
+        args.nb_classes = len(full_dataset.classes)
+
+        # 划分 train / val，随机种子固定以保证一致
+        val_ratio = getattr(args, "val_ratio", 0.3)
+        seed = getattr(args, "seed", 42)
+        num_total = len(full_dataset)
+        if not hasattr(build_dataset, "_splits"):
+            np.random.seed(seed)
+            all_indices = np.random.permutation(num_total)
+            val_len = int((num_total * val_ratio))
+            val_indices = all_indices[:val_len]
+            train_indices = all_indices[val_len:]
+
+            build_dataset._splits = {
+                "train": train_indices,
+                "val": val_indices
+            }
+
+
+        subset_indices = build_dataset._splits["train" if is_train else "val"]
+        dataset = Smh_Dataset(full_dataset, subset_indices)
+        nb_classes = args.nb_classes
+
 
     return dataset, nb_classes
 
