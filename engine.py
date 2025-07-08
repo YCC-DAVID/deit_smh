@@ -15,12 +15,52 @@ from timm.utils import accuracy, ModelEma
 from losses import DistillationLoss
 import utils
 
+from sklearn.cluster import KMeans
+from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
+import numpy as np
+
+
+class FeatureWrapper(torch.nn.Module):
+    def __init__(self, backbone: torch.nn.Module):
+        super().__init__()
+        self.backbone = backbone
+        # 取掉分类层，或者把 fc 改成 identity
+        if hasattr(backbone, "fc"):
+            self.backbone.fc = torch.nn.Identity()
+
+    def forward(self, x):
+        # 返回 [B, 2048]，不 squeeze，方便后续扩展
+        return self.backbone(x)
+
+@torch.no_grad()
+def evaluate_embeddings(feature_extractor: torch.nn.Module,
+                        val_loader: torch.utils.data.DataLoader,
+                        device: torch.device):
+    feature_extractor.eval()
+
+    feats, labels = [], []
+    for images, y in val_loader:
+        images = images.to(device, non_blocking=True)
+        f = feature_extractor(images)        # [B, 2048]
+        feats.append(f.cpu())
+        labels.append(y)
+
+    X = torch.cat(feats, 0).numpy()
+    y = torch.cat(labels, 0).numpy()
+
+    n_clusters = len(np.unique(y))
+    preds = KMeans(n_clusters=n_clusters, random_state=0).fit_predict(X)
+
+    ari = adjusted_rand_score(y, preds)
+    nmi = normalized_mutual_info_score(y, preds)
+    return ari, nmi
+
 
 def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
                     data_loader: Iterable, optimizer: torch.optim.Optimizer,
                     device: torch.device, epoch: int, loss_scaler, max_norm: float = 0,
                     model_ema: Optional[ModelEma] = None, mixup_fn: Optional[Mixup] = None,
-                    set_training_mode=True, args = None):
+                    set_training_mode=True, args = None, logger = None):
     model.train(set_training_mode)
     metric_logger = utils.MetricLogger(delimiter="  ")
     metric_logger.add_meter('lr', utils.SmoothedValue(window_size=1, fmt='{value:.6f}'))

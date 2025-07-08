@@ -18,13 +18,14 @@ from timm.optim import create_optimizer
 from timm.utils import NativeScaler, get_state_dict, ModelEma
 
 from datasets import build_dataset
-from engine import train_one_epoch, evaluate
+from engine import train_one_epoch, evaluate, evaluate_embeddings,FeatureWrapper
 from losses import DistillationLoss
 from samplers import RASampler
 from augment import new_data_aug_generator
 
 import models
 import models_v2
+import wandb
 
 import utils
 
@@ -185,10 +186,24 @@ def get_args_parser():
     parser.add_argument('--world_size', default=1, type=int,
                         help='number of distributed processes')
     parser.add_argument('--dist_url', default='env://', help='url used to set up distributed training')
+
+
+    parser.add_argument("-logger", action='store_true')
+    parser.add_argument('--exp_name', type=str, default='default_exp', help='Name of the experiment')
     return parser
 
 
 def main(args):
+
+    if args.logger:
+        logger = wandb.init(
+        project="smh_detection_Deit",
+        # Track hyperparameters and run metadata.
+        config=vars(args),
+        name = args.exp_name,
+        )   
+    else:
+        logger = None
     utils.init_distributed_mode(args)
 
     print(args)
@@ -428,6 +443,7 @@ def main(args):
             set_training_mode=args.train_mode,  # keep in eval mode for deit finetuning / train mode for training and deit III finetuning
             args = args,
         )
+        
 
         lr_scheduler.step(epoch)
         if args.output_dir:
@@ -442,10 +458,17 @@ def main(args):
                     'scaler': loss_scaler.state_dict(),
                     'args': args,
                 }, checkpoint_path)
+        
+        feature_extractor = FeatureWrapper(model).eval()
+        ari, nmi = evaluate_embeddings(feature_extractor, data_loader_val, device)
              
 
         test_stats = evaluate(data_loader_val, model, device)
         print(f"Accuracy of the network on the {len(dataset_val)} test images: {test_stats['acc1']:.1f}%")
+        if utils.is_main_process() and wandb.run is not None:
+                wandb.log({"acc": test_stats['acc1'], "loss": train_stats["loss"],
+               "ARI": ari, "NMI": nmi})
+
         
         if max_accuracy < test_stats["acc1"]:
             max_accuracy = test_stats["acc1"]
