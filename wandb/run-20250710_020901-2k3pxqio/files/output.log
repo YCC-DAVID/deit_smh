@@ -1,0 +1,292 @@
+Not using distributed mode
+Namespace(batch_size=64, epochs=20, bce_loss=False, unscale_lr=False, model='deit_tiny_patch16_224', input_size=224, drop=0.0, drop_path=0.1, model_ema=True, model_ema_decay=0.99996, model_ema_force_cpu=False, opt='adamw', opt_eps=1e-08, opt_betas=None, clip_grad=None, momentum=0.9, weight_decay=0.05, sched='cosine', lr=0.0005, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, warmup_lr=1e-06, min_lr=1e-05, decay_epochs=30, warmup_epochs=5, cooldown_epochs=10, patience_epochs=10, decay_rate=0.1, color_jitter=0.3, aa='rand-m9-mstd0.5-inc1', smoothing=0.1, train_interpolation='bicubic', repeated_aug=True, train_mode=True, ThreeAugment=False, src=False, reprob=0.25, remode='pixel', recount=1, resplit=False, mixup=0.8, cutmix=1.0, cutmix_minmax=None, mixup_prob=1.0, mixup_switch_prob=0.5, mixup_mode='batch', teacher_model='regnety_160', teacher_path='', distillation_type='none', distillation_alpha=0.5, distillation_tau=1.0, cosub=False, finetune='https://dl.fbaipublicfiles.com/deit/deit_tiny_patch16_224-a1311bcf.pth', attn_only=False, data_path='/home/shared_data/salmonella_detection/OriginalData/AmericanData', data_set='Smh_custom', inat_category='name', output_dir='/home/shared_data/salmonella_detection/smh_shared_output/exp_name', device='cuda', seed=0, resume='', start_epoch=0, eval=False, eval_crop_ratio=0.875, dist_eval=False, num_workers=0, pin_mem=True, distributed=False, world_size=1, dist_url='env://', logger=True, exp_name='first_try', val_ratio=0.3)
+Creating model: deit_tiny_patch16_224
+Downloading: "https://dl.fbaipublicfiles.com/deit/deit_tiny_patch16_224-a1311bcf.pth" to /home/qingchan/.cache/torch/hub/checkpoints/deit_tiny_patch16_224-a1311bcf.pth
+100%|████████████████████████████████████████████████████████████| 21.9M/21.9M [00:00<00:00, 110MB/s]
+Removing key head.weight from pretrained checkpoint
+Removing key head.bias from pretrained checkpoint
+number of params: 5524802
+/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/timm/utils/cuda.py:50: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self._scaler = torch.cuda.amp.GradScaler()
+Start training for 20 epochs
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [0]  [0/7]  eta: 0:00:11  lr: 0.000001  loss: 0.6852 (0.6852)  time: 1.5775  data: 1.1537  max mem: 1186
+Epoch: [0]  [6/7]  eta: 0:00:01  lr: 0.000001  loss: 0.6968 (0.7104)  time: 1.1918  data: 1.1023  max mem: 1229
+Epoch: [0] Total time: 0:00:08 (1.1920 s / it)
+Averaged stats: lr: 0.000001  loss: 0.6968 (0.7104)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6921 (0.6921)  acc1: 60.4167 (60.4167)  acc5: 100.0000 (100.0000)  time: 2.1943  data: 2.1451  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6921 (0.6925)  acc1: 52.0833 (54.6729)  acc5: 100.0000 (100.0000)  time: 1.6583  data: 1.6329  max mem: 1229
+Test: Total time: 0:00:04 (1.6586 s / it)
+* Acc@1 54.673 Acc@5 100.000 loss 0.692
+Accuracy of the network on the 214 test images: 54.7%
+Max accuracy: 54.67%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [1]  [0/7]  eta: 0:00:07  lr: 0.000001  loss: 0.7054 (0.7054)  time: 1.0328  data: 0.9966  max mem: 1229
+Epoch: [1]  [6/7]  eta: 0:00:01  lr: 0.000001  loss: 0.6965 (0.7023)  time: 1.0110  data: 0.9776  max mem: 1229
+Epoch: [1] Total time: 0:00:07 (1.0111 s / it)
+Averaged stats: lr: 0.000001  loss: 0.6965 (0.7023)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6915 (0.6915)  acc1: 59.3750 (59.3750)  acc5: 100.0000 (100.0000)  time: 2.0422  data: 2.0291  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6915 (0.6898)  acc1: 54.1667 (55.6075)  acc5: 100.0000 (100.0000)  time: 1.5942  data: 1.5839  max mem: 1229
+Test: Total time: 0:00:04 (1.5945 s / it)
+* Acc@1 55.607 Acc@5 100.000 loss 0.690
+Accuracy of the network on the 214 test images: 55.6%
+Max accuracy: 55.61%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [2]  [0/7]  eta: 0:00:07  lr: 0.000013  loss: 0.7142 (0.7142)  time: 1.0263  data: 0.9939  max mem: 1229
+Epoch: [2]  [6/7]  eta: 0:00:01  lr: 0.000013  loss: 0.7142 (0.7070)  time: 1.0373  data: 1.0041  max mem: 1229
+Epoch: [2] Total time: 0:00:07 (1.0374 s / it)
+Averaged stats: lr: 0.000013  loss: 0.7142 (0.7070)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6988 (0.6988)  acc1: 54.1667 (54.1667)  acc5: 100.0000 (100.0000)  time: 2.0264  data: 2.0134  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6780 (0.6812)  acc1: 59.0909 (60.7477)  acc5: 100.0000 (100.0000)  time: 1.5146  data: 1.5045  max mem: 1229
+Test: Total time: 0:00:04 (1.5149 s / it)
+* Acc@1 60.748 Acc@5 100.000 loss 0.681
+Accuracy of the network on the 214 test images: 60.7%
+Max accuracy: 60.75%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [3]  [0/7]  eta: 0:00:07  lr: 0.000026  loss: 0.6935 (0.6935)  time: 1.0051  data: 0.9724  max mem: 1229
+Epoch: [3]  [6/7]  eta: 0:00:01  lr: 0.000026  loss: 0.6935 (0.6864)  time: 1.0292  data: 0.9959  max mem: 1229
+Epoch: [3] Total time: 0:00:07 (1.0293 s / it)
+Averaged stats: lr: 0.000026  loss: 0.6935 (0.6864)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6800 (0.6800)  acc1: 54.1667 (54.1667)  acc5: 100.0000 (100.0000)  time: 2.0413  data: 2.0280  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6626 (0.6675)  acc1: 63.6364 (59.8131)  acc5: 100.0000 (100.0000)  time: 1.5067  data: 1.4965  max mem: 1229
+Test: Total time: 0:00:04 (1.5071 s / it)
+* Acc@1 59.813 Acc@5 100.000 loss 0.668
+Accuracy of the network on the 214 test images: 59.8%
+Max accuracy: 60.75%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [4]  [0/7]  eta: 0:00:07  lr: 0.000038  loss: 0.6657 (0.6657)  time: 1.0040  data: 0.9716  max mem: 1229
+Epoch: [4]  [6/7]  eta: 0:00:01  lr: 0.000038  loss: 0.6657 (0.6731)  time: 1.0150  data: 0.9817  max mem: 1229
+Epoch: [4] Total time: 0:00:07 (1.0151 s / it)
+Averaged stats: lr: 0.000038  loss: 0.6657 (0.6731)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:05  loss: 0.6751 (0.6751)  acc1: 55.2083 (55.2083)  acc5: 100.0000 (100.0000)  time: 1.9905  data: 1.9774  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6551 (0.6594)  acc1: 65.6250 (61.2150)  acc5: 100.0000 (100.0000)  time: 1.4874  data: 1.4774  max mem: 1229
+Test: Total time: 0:00:04 (1.4878 s / it)
+* Acc@1 61.215 Acc@5 100.000 loss 0.659
+Accuracy of the network on the 214 test images: 61.2%
+Max accuracy: 61.21%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [5]  [0/7]  eta: 0:00:07  lr: 0.000050  loss: 0.7042 (0.7042)  time: 1.0137  data: 0.9817  max mem: 1229
+Epoch: [5]  [6/7]  eta: 0:00:01  lr: 0.000050  loss: 0.6662 (0.6707)  time: 1.0368  data: 1.0037  max mem: 1229
+Epoch: [5] Total time: 0:00:07 (1.0369 s / it)
+Averaged stats: lr: 0.000050  loss: 0.6662 (0.6707)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6709 (0.6709)  acc1: 55.2083 (55.2083)  acc5: 100.0000 (100.0000)  time: 2.0840  data: 2.0709  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6501 (0.6517)  acc1: 64.5833 (60.7477)  acc5: 100.0000 (100.0000)  time: 1.5534  data: 1.5433  max mem: 1229
+Test: Total time: 0:00:04 (1.5538 s / it)
+* Acc@1 60.748 Acc@5 100.000 loss 0.652
+Accuracy of the network on the 214 test images: 60.7%
+Max accuracy: 61.21%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [6]  [0/7]  eta: 0:00:07  lr: 0.000055  loss: 0.6712 (0.6712)  time: 1.0618  data: 1.0299  max mem: 1229
+Epoch: [6]  [6/7]  eta: 0:00:01  lr: 0.000055  loss: 0.6769 (0.6812)  time: 1.0281  data: 0.9956  max mem: 1229
+Epoch: [6] Total time: 0:00:07 (1.0283 s / it)
+Averaged stats: lr: 0.000055  loss: 0.6769 (0.6812)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6665 (0.6665)  acc1: 59.3750 (59.3750)  acc5: 100.0000 (100.0000)  time: 2.0822  data: 2.0690  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6631 (0.6503)  acc1: 64.5833 (63.0841)  acc5: 100.0000 (100.0000)  time: 1.5528  data: 1.5428  max mem: 1229
+Test: Total time: 0:00:04 (1.5532 s / it)
+* Acc@1 63.084 Acc@5 100.000 loss 0.650
+Accuracy of the network on the 214 test images: 63.1%
+Max accuracy: 63.08%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [7]  [0/7]  eta: 0:00:07  lr: 0.000052  loss: 0.6830 (0.6830)  time: 1.0339  data: 1.0020  max mem: 1229
+Epoch: [7]  [6/7]  eta: 0:00:01  lr: 0.000052  loss: 0.6786 (0.6706)  time: 1.0217  data: 0.9888  max mem: 1229
+Epoch: [7] Total time: 0:00:07 (1.0218 s / it)
+Averaged stats: lr: 0.000052  loss: 0.6786 (0.6706)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6669 (0.6669)  acc1: 59.3750 (59.3750)  acc5: 100.0000 (100.0000)  time: 2.0129  data: 1.9997  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6536 (0.6435)  acc1: 64.5833 (63.0841)  acc5: 100.0000 (100.0000)  time: 1.4997  data: 1.4897  max mem: 1229
+Test: Total time: 0:00:04 (1.5001 s / it)
+* Acc@1 63.084 Acc@5 100.000 loss 0.643
+Accuracy of the network on the 214 test images: 63.1%
+Max accuracy: 63.08%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [8]  [0/7]  eta: 0:00:07  lr: 0.000048  loss: 0.6892 (0.6892)  time: 1.0106  data: 0.9781  max mem: 1229
+Epoch: [8]  [6/7]  eta: 0:00:01  lr: 0.000048  loss: 0.6733 (0.6722)  time: 1.0380  data: 1.0049  max mem: 1229
+Epoch: [8] Total time: 0:00:07 (1.0382 s / it)
+Averaged stats: lr: 0.000048  loss: 0.6733 (0.6722)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:05  loss: 0.6733 (0.6733)  acc1: 59.3750 (59.3750)  acc5: 100.0000 (100.0000)  time: 1.9890  data: 1.9758  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6529 (0.6431)  acc1: 63.5417 (62.6168)  acc5: 100.0000 (100.0000)  time: 1.4835  data: 1.4734  max mem: 1229
+Test: Total time: 0:00:04 (1.4838 s / it)
+* Acc@1 62.617 Acc@5 100.000 loss 0.643
+Accuracy of the network on the 214 test images: 62.6%
+Max accuracy: 63.08%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [9]  [0/7]  eta: 0:00:07  lr: 0.000044  loss: 0.6690 (0.6690)  time: 1.0133  data: 0.9810  max mem: 1229
+Epoch: [9]  [6/7]  eta: 0:00:00  lr: 0.000044  loss: 0.6673 (0.6605)  time: 0.9982  data: 0.9656  max mem: 1229
+Epoch: [9] Total time: 0:00:06 (0.9983 s / it)
+Averaged stats: lr: 0.000044  loss: 0.6673 (0.6605)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6726 (0.6726)  acc1: 58.3333 (58.3333)  acc5: 100.0000 (100.0000)  time: 2.0510  data: 2.0378  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6462 (0.6394)  acc1: 65.6250 (62.6168)  acc5: 100.0000 (100.0000)  time: 1.5327  data: 1.5226  max mem: 1229
+Test: Total time: 0:00:04 (1.5330 s / it)
+* Acc@1 62.617 Acc@5 100.000 loss 0.639
+Accuracy of the network on the 214 test images: 62.6%
+Max accuracy: 63.08%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [10]  [0/7]  eta: 0:00:07  lr: 0.000040  loss: 0.6666 (0.6666)  time: 1.0252  data: 0.9931  max mem: 1229
+Epoch: [10]  [6/7]  eta: 0:00:01  lr: 0.000040  loss: 0.6666 (0.6683)  time: 1.0322  data: 0.9994  max mem: 1229
+Epoch: [10] Total time: 0:00:07 (1.0324 s / it)
+Averaged stats: lr: 0.000040  loss: 0.6666 (0.6683)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6700 (0.6700)  acc1: 58.3333 (58.3333)  acc5: 100.0000 (100.0000)  time: 2.0899  data: 2.0767  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6700 (0.6491)  acc1: 58.3333 (60.2804)  acc5: 100.0000 (100.0000)  time: 1.5481  data: 1.5380  max mem: 1229
+Test: Total time: 0:00:04 (1.5485 s / it)
+* Acc@1 60.280 Acc@5 100.000 loss 0.649
+Accuracy of the network on the 214 test images: 60.3%
+Max accuracy: 63.08%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [11]  [0/7]  eta: 0:00:07  lr: 0.000036  loss: 0.6973 (0.6973)  time: 1.0338  data: 1.0019  max mem: 1229
+Epoch: [11]  [6/7]  eta: 0:00:01  lr: 0.000036  loss: 0.6815 (0.6669)  time: 1.0285  data: 0.9952  max mem: 1229
+Epoch: [11] Total time: 0:00:07 (1.0286 s / it)
+Averaged stats: lr: 0.000036  loss: 0.6815 (0.6669)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6734 (0.6734)  acc1: 56.2500 (56.2500)  acc5: 100.0000 (100.0000)  time: 2.1312  data: 2.1180  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6393 (0.6392)  acc1: 67.7083 (62.6168)  acc5: 100.0000 (100.0000)  time: 1.5694  data: 1.5593  max mem: 1229
+Test: Total time: 0:00:04 (1.5697 s / it)
+* Acc@1 62.617 Acc@5 100.000 loss 0.639
+Accuracy of the network on the 214 test images: 62.6%
+Max accuracy: 63.08%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [12]  [0/7]  eta: 0:00:07  lr: 0.000032  loss: 0.7054 (0.7054)  time: 1.0361  data: 1.0036  max mem: 1229
+Epoch: [12]  [6/7]  eta: 0:00:01  lr: 0.000032  loss: 0.6703 (0.6657)  time: 1.0396  data: 1.0065  max mem: 1229
+Epoch: [12] Total time: 0:00:07 (1.0398 s / it)
+Averaged stats: lr: 0.000032  loss: 0.6703 (0.6657)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6669 (0.6669)  acc1: 59.3750 (59.3750)  acc5: 100.0000 (100.0000)  time: 2.0649  data: 2.0518  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6492 (0.6381)  acc1: 63.6364 (62.6168)  acc5: 100.0000 (100.0000)  time: 1.5362  data: 1.5261  max mem: 1229
+Test: Total time: 0:00:04 (1.5366 s / it)
+* Acc@1 62.617 Acc@5 100.000 loss 0.638
+Accuracy of the network on the 214 test images: 62.6%
+Max accuracy: 63.08%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [13]  [0/7]  eta: 0:00:07  lr: 0.000028  loss: 0.6543 (0.6543)  time: 1.0361  data: 1.0037  max mem: 1229
+Epoch: [13]  [6/7]  eta: 0:00:01  lr: 0.000028  loss: 0.6628 (0.6675)  time: 1.0476  data: 1.0142  max mem: 1229
+Epoch: [13] Total time: 0:00:07 (1.0477 s / it)
+Averaged stats: lr: 0.000028  loss: 0.6628 (0.6675)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6643 (0.6643)  acc1: 59.3750 (59.3750)  acc5: 100.0000 (100.0000)  time: 2.0463  data: 2.0332  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6643 (0.6410)  acc1: 59.3750 (60.2804)  acc5: 100.0000 (100.0000)  time: 1.5247  data: 1.5146  max mem: 1229
+Test: Total time: 0:00:04 (1.5250 s / it)
+* Acc@1 60.280 Acc@5 100.000 loss 0.641
+Accuracy of the network on the 214 test images: 60.3%
+Max accuracy: 63.08%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [14]  [0/7]  eta: 0:00:07  lr: 0.000024  loss: 0.6614 (0.6614)  time: 1.0327  data: 0.9998  max mem: 1229
+Epoch: [14]  [6/7]  eta: 0:00:01  lr: 0.000024  loss: 0.6547 (0.6562)  time: 1.0261  data: 0.9928  max mem: 1229
+Epoch: [14] Total time: 0:00:07 (1.0262 s / it)
+Averaged stats: lr: 0.000024  loss: 0.6547 (0.6562)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6667 (0.6667)  acc1: 58.3333 (58.3333)  acc5: 100.0000 (100.0000)  time: 2.0783  data: 2.0652  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6396 (0.6326)  acc1: 63.6364 (61.6822)  acc5: 100.0000 (100.0000)  time: 1.5569  data: 1.5468  max mem: 1229
+Test: Total time: 0:00:04 (1.5572 s / it)
+* Acc@1 61.682 Acc@5 100.000 loss 0.633
+Accuracy of the network on the 214 test images: 61.7%
+Max accuracy: 63.08%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [15]  [0/7]  eta: 0:00:07  lr: 0.000021  loss: 0.6406 (0.6406)  time: 1.0458  data: 1.0136  max mem: 1229
+Epoch: [15]  [6/7]  eta: 0:00:01  lr: 0.000021  loss: 0.6406 (0.6570)  time: 1.0325  data: 0.9992  max mem: 1229
+Epoch: [15] Total time: 0:00:07 (1.0326 s / it)
+Averaged stats: lr: 0.000021  loss: 0.6406 (0.6570)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6632 (0.6632)  acc1: 58.3333 (58.3333)  acc5: 100.0000 (100.0000)  time: 2.0154  data: 2.0022  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6438 (0.6316)  acc1: 66.6667 (63.0841)  acc5: 100.0000 (100.0000)  time: 1.5086  data: 1.4985  max mem: 1229
+Test: Total time: 0:00:04 (1.5089 s / it)
+* Acc@1 63.084 Acc@5 100.000 loss 0.632
+Accuracy of the network on the 214 test images: 63.1%
+Max accuracy: 63.08%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [16]  [0/7]  eta: 0:00:07  lr: 0.000018  loss: 0.6758 (0.6758)  time: 1.0020  data: 0.9679  max mem: 1229
+Epoch: [16]  [6/7]  eta: 0:00:01  lr: 0.000018  loss: 0.6721 (0.6694)  time: 1.0309  data: 0.9972  max mem: 1229
+Epoch: [16] Total time: 0:00:07 (1.0311 s / it)
+Averaged stats: lr: 0.000018  loss: 0.6721 (0.6694)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6631 (0.6631)  acc1: 61.4583 (61.4583)  acc5: 100.0000 (100.0000)  time: 2.1908  data: 2.1772  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6468 (0.6337)  acc1: 67.7083 (64.9533)  acc5: 100.0000 (100.0000)  time: 1.7135  data: 1.7027  max mem: 1229
+Test: Total time: 0:00:05 (1.7140 s / it)
+* Acc@1 64.953 Acc@5 100.000 loss 0.634
+Accuracy of the network on the 214 test images: 65.0%
+Max accuracy: 64.95%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [17]  [0/7]  eta: 0:00:08  lr: 0.000015  loss: 0.6293 (0.6293)  time: 1.2014  data: 1.1695  max mem: 1229
+Epoch: [17]  [6/7]  eta: 0:00:01  lr: 0.000015  loss: 0.6619 (0.6557)  time: 1.0548  data: 1.0218  max mem: 1229
+Epoch: [17] Total time: 0:00:07 (1.0549 s / it)
+Averaged stats: lr: 0.000015  loss: 0.6619 (0.6557)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6647 (0.6647)  acc1: 58.3333 (58.3333)  acc5: 100.0000 (100.0000)  time: 2.0801  data: 2.0671  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6400 (0.6334)  acc1: 66.6667 (63.0841)  acc5: 100.0000 (100.0000)  time: 1.5520  data: 1.5420  max mem: 1229
+Test: Total time: 0:00:04 (1.5524 s / it)
+* Acc@1 63.084 Acc@5 100.000 loss 0.633
+Accuracy of the network on the 214 test images: 63.1%
+Max accuracy: 64.95%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [18]  [0/7]  eta: 0:00:07  lr: 0.000013  loss: 0.6823 (0.6823)  time: 1.0769  data: 1.0442  max mem: 1229
+Epoch: [18]  [6/7]  eta: 0:00:01  lr: 0.000013  loss: 0.6703 (0.6655)  time: 1.0548  data: 1.0212  max mem: 1229
+Epoch: [18] Total time: 0:00:07 (1.0549 s / it)
+Averaged stats: lr: 0.000013  loss: 0.6703 (0.6655)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:05  loss: 0.6652 (0.6652)  acc1: 60.4167 (60.4167)  acc5: 100.0000 (100.0000)  time: 1.9659  data: 1.9527  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6457 (0.6365)  acc1: 67.7083 (64.9533)  acc5: 100.0000 (100.0000)  time: 1.4656  data: 1.4555  max mem: 1229
+Test: Total time: 0:00:04 (1.4660 s / it)
+* Acc@1 64.953 Acc@5 100.000 loss 0.637
+Accuracy of the network on the 214 test images: 65.0%
+Max accuracy: 64.95%
+/home/qingchan/project/deit_smh/deit_smh/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [19]  [0/7]  eta: 0:00:06  lr: 0.000011  loss: 0.6844 (0.6844)  time: 0.9944  data: 0.9625  max mem: 1229
+Epoch: [19]  [6/7]  eta: 0:00:01  lr: 0.000011  loss: 0.6832 (0.6595)  time: 1.0340  data: 1.0012  max mem: 1229
+Epoch: [19] Total time: 0:00:07 (1.0341 s / it)
+Averaged stats: lr: 0.000011  loss: 0.6832 (0.6595)
+/home/qingchan/project/deit_smh/deit_smh/engine.py:137: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [0/3]  eta: 0:00:06  loss: 0.6667 (0.6667)  acc1: 61.4583 (61.4583)  acc5: 100.0000 (100.0000)  time: 2.0780  data: 2.0648  max mem: 1229
+Test:  [2/3]  eta: 0:00:01  loss: 0.6500 (0.6388)  acc1: 67.7083 (65.4206)  acc5: 100.0000 (100.0000)  time: 1.5497  data: 1.5396  max mem: 1229
+Test: Total time: 0:00:04 (1.5501 s / it)
+* Acc@1 65.421 Acc@5 100.000 loss 0.639
+Accuracy of the network on the 214 test images: 65.4%
+Max accuracy: 65.42%
+Training time 0:05:33

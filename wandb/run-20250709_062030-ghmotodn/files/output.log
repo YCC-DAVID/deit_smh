@@ -1,0 +1,72 @@
+Not using distributed mode
+Namespace(batch_size=64, epochs=300, bce_loss=False, unscale_lr=False, model='deit_tiny_patch16_224', input_size=224, drop=0.0, drop_path=0.1, model_ema=True, model_ema_decay=0.99996, model_ema_force_cpu=False, opt='adamw', opt_eps=1e-08, opt_betas=None, clip_grad=None, momentum=0.9, weight_decay=0.05, sched='cosine', lr=0.0005, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, warmup_lr=1e-06, min_lr=1e-05, decay_epochs=30, warmup_epochs=5, cooldown_epochs=10, patience_epochs=10, decay_rate=0.1, color_jitter=0.3, aa='rand-m9-mstd0.5-inc1', smoothing=0.1, train_interpolation='bicubic', repeated_aug=True, train_mode=True, ThreeAugment=False, src=False, reprob=0.25, remode='pixel', recount=1, resplit=False, mixup=0.8, cutmix=1.0, cutmix_minmax=None, mixup_prob=1.0, mixup_switch_prob=0.5, mixup_mode='batch', teacher_model='regnety_160', teacher_path='', distillation_type='none', distillation_alpha=0.5, distillation_tau=1.0, cosub=False, finetune='', attn_only=False, data_path='/home/shared_data/salmonella_detection/OriginalData/AmericanData', data_set='Smh_custom', inat_category='name', output_dir='/home/shared_data/salmonella_detection/smh_shared_output/exp_name', device='cuda', seed=0, resume='', start_epoch=0, eval=False, eval_crop_ratio=0.875, dist_eval=False, num_workers=10, pin_mem=True, distributed=False, world_size=1, dist_url='env://', logger=True, exp_name='first_try', val_ratio=0.3)
+Creating model: deit_tiny_patch16_224
+number of params: 5524802
+/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/timm/utils/cuda.py:50: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self._scaler = torch.cuda.amp.GradScaler()
+Start training for 300 epochs
+Traceback (most recent call last):
+  File "/home/qingchan/project/deit_smh/deit_smh/main.py", line 513, in <module>
+    main(args)
+  File "/home/qingchan/project/deit_smh/deit_smh/main.py", line 440, in main
+    train_stats = train_one_epoch(
+                  ^^^^^^^^^^^^^^^^
+  File "/home/qingchan/project/deit_smh/deit_smh/engine.py", line 73, in train_one_epoch
+    for samples, targets in metric_logger.log_every(data_loader, print_freq, header):
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/qingchan/project/deit_smh/deit_smh/utils.py", line 136, in log_every
+    for obj in iterable:
+               ^^^^^^^^
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 733, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1515, in _next_data
+    return self._process_data(data, worker_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1550, in _process_data
+    data.reraise()
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/_utils.py", line 750, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/utils/data/_utils/worker.py", line 349, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/utils/data/_utils/fetch.py", line 55, in fetch
+    return self.collate_fn(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/utils/data/_utils/collate.py", line 398, in default_collate
+    return collate(batch, collate_fn_map=default_collate_fn_map)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/utils/data/_utils/collate.py", line 212, in collate
+    collate(samples, collate_fn_map=collate_fn_map)
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/utils/data/_utils/collate.py", line 155, in collate
+    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/utils/data/_utils/collate.py", line 270, in collate_tensor_fn
+    storage = elem._typed_storage()._new_shared(numel, device=elem.device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/storage.py", line 1198, in _new_shared
+    untyped_storage = torch.UntypedStorage._new_shared(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/storage.py", line 412, in _new_shared
+    return cls._new_using_fd_cpu(size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: unable to write to file </torch_561053_3320069564_0>: No space left on device (28)
+
+Exception ignored in atexit callback: <function _start_and_connect_service.<locals>.teardown_atexit at 0x7941698b4b80>
+Traceback (most recent call last):
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/wandb/sdk/lib/service_connection.py", line 94, in teardown_atexit
+    conn.teardown(hooks.exit_code)
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/wandb/sdk/lib/service_connection.py", line 226, in teardown
+    self._router.join()
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/wandb/sdk/interface/router.py", line 75, in join
+    self._thread.join()
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/threading.py", line 1149, in join
+    self._wait_for_tstate_lock()
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/threading.py", line 1169, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/qingchan/micromamba/envs/smh_dect/lib/python3.12/site-packages/torch/utils/data/_utils/signal_handling.py", line 73, in handler
+    _error_if_any_worker_fails()
+RuntimeError: DataLoader worker (pid 561058) is killed by signal: Bus error. It is possible that dataloader's workers are out of shared memory. Please try to raise your shared memory limit.

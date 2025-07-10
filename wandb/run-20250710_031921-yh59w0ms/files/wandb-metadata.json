@@ -1,0 +1,79 @@
+{
+  "os": "Linux-6.11.0-26-generic-x86_64-with-glibc2.39",
+  "python": "CPython 3.12.9",
+  "startedAt": "2025-07-10T03:19:21.238145Z",
+  "args": [
+    "--model",
+    "deit_tiny_patch16_224",
+    "--batch-size",
+    "64",
+    "--data-set",
+    "Smh_custom",
+    "--data-path",
+    "/home/shared_data/salmonella_detection/OriginalData/AmericanData",
+    "--output_dir",
+    "/home/shared_data/salmonella_detection/smh_shared_output/exp_name",
+    "-logger",
+    "--exp_name",
+    "first_try",
+    "--finetune",
+    "https://dl.fbaipublicfiles.com/deit/deit_tiny_patch16_224-a1311bcf.pth",
+    "--epochs",
+    "20"
+  ],
+  "program": "/home/qingchan/project/deit_smh/deit_smh/main.py",
+  "codePath": "main.py",
+  "git": {
+    "remote": "https://github.com/YCC-DAVID/deit_smh.git",
+    "commit": "5520fe0d39a634239d07504f5876c03ae1af9393"
+  },
+  "email": "davidycc@163.com",
+  "root": "/home/qingchan/project/deit_smh/deit_smh",
+  "host": "3224b0fe6930",
+  "executable": "/home/qingchan/micromamba/envs/smh_dect/bin/python",
+  "codePathLocal": "main.py",
+  "cpu_count": 36,
+  "cpu_count_logical": 72,
+  "gpu": "NVIDIA RTX A6000",
+  "gpu_count": 4,
+  "disk": {
+    "/": {
+      "total": "3998833524736",
+      "used": "3005694431232"
+    }
+  },
+  "memory": {
+    "total": "269703700480"
+  },
+  "cpu": {
+    "count": 36,
+    "countLogical": 72
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA RTX A6000",
+      "memoryTotal": "51527024640",
+      "cudaCores": 10752,
+      "architecture": "Ampere"
+    },
+    {
+      "name": "NVIDIA RTX A6000",
+      "memoryTotal": "51527024640",
+      "cudaCores": 10752,
+      "architecture": "Ampere"
+    },
+    {
+      "name": "NVIDIA RTX A6000",
+      "memoryTotal": "51527024640",
+      "cudaCores": 10752,
+      "architecture": "Ampere"
+    },
+    {
+      "name": "NVIDIA RTX A6000",
+      "memoryTotal": "51527024640",
+      "cudaCores": 10752,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.8"
+}

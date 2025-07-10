@@ -1,0 +1,15 @@
+{"time":"2025-07-10T02:09:01.788391699Z","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/qingchan/project/deit_smh/deit_smh/wandb/run-20250710_020901-2k3pxqio/logs/debug-core.log"}
+{"time":"2025-07-10T02:09:01.968263418Z","level":"INFO","msg":"created new stream","id":"2k3pxqio"}
+{"time":"2025-07-10T02:09:01.968394178Z","level":"INFO","msg":"stream: started","id":"2k3pxqio"}
+{"time":"2025-07-10T02:09:01.968572105Z","level":"INFO","msg":"writer: Do: started","stream_id":"2k3pxqio"}
+{"time":"2025-07-10T02:09:01.968609897Z","level":"INFO","msg":"handler: started","stream_id":"2k3pxqio"}
+{"time":"2025-07-10T02:09:01.968742893Z","level":"INFO","msg":"sender: started","stream_id":"2k3pxqio"}
+{"time":"2025-07-10T02:09:02.148755905Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-10T02:14:43.190468678Z","level":"INFO","msg":"stream: closing","id":"2k3pxqio"}
+{"time":"2025-07-10T02:14:43.19052635Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-10T02:14:43.19066634Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-10T02:14:43.566517952Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-10T02:14:43.6787401Z","level":"INFO","msg":"handler: closed","stream_id":"2k3pxqio"}
+{"time":"2025-07-10T02:14:43.678826212Z","level":"INFO","msg":"sender: closed","stream_id":"2k3pxqio"}
+{"time":"2025-07-10T02:14:43.678823763Z","level":"INFO","msg":"writer: Close: closed","stream_id":"2k3pxqio"}
+{"time":"2025-07-10T02:14:43.67898251Z","level":"INFO","msg":"stream: closed","id":"2k3pxqio"}

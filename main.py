@@ -174,7 +174,8 @@ def get_args_parser():
     parser.add_argument('--eval', action='store_true', help='Perform evaluation only')
     parser.add_argument('--eval-crop-ratio', default=0.875, type=float, help="Crop ratio for evaluation")
     parser.add_argument('--dist-eval', action='store_true', default=False, help='Enabling distributed evaluation')
-    parser.add_argument('--num_workers', default=10, type=int)
+    # parser.add_argument('--num_workers', default=10, type=int)
+    parser.add_argument('--num_workers', default=0, type=int)
     parser.add_argument('--pin-mem', action='store_true',
                         help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
     parser.add_argument('--no-pin-mem', action='store_false', dest='pin_mem',
@@ -198,7 +199,7 @@ def main(args):
 
     if args.logger:
         logger = wandb.init(
-        project="smh_detection_Deit",
+        project="smh_dect_deit",
         # Track hyperparameters and run metadata.
         config=vars(args),
         name = args.exp_name,
